@@ -1,0 +1,22 @@
+.card {
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+	transition: all .3s;
+}
+
+.card:hover {
+	box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+}
+
+.category-thumb a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	padding: 10px;
+}
+
+.category-thumb img {
+	max-width: 100%;
+	max-height: 100%;
+}
+

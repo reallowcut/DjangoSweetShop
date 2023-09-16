@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block links %}
+    {% load static %}
+     <link rel="stylesheet" href="{% static "shop/css/categories-styles.css" %}"/>
+{% endblock %}
+{% block content %}
+<div class="conteiner text-center mx-auto img-fluid">
+    <img src="/img/logo/main-category-image.jpg" width="1293" height="auto" class="img-fluid rounded align-top" alt="">
+</div>
+    <div class="conteiner pt-5 text-center">
+        <p>
+        <h2><b>Каталог продукции</b></h2>
+
+
+        <div class="card-group ">
+            <div class="row mx-auto">
+
+                {% for category in categories %}
+
+                    <div class="col-md-4 gx-3 pt-3">
+                        <div class="card">
+                            <div class="category-thumb">
+                                <a href="#"><img src="{{ category.image.url }}" alt=""></a>
+                            </div>
+                            <div class="card-body ">
+                                <h5 class="card-title "><a href="{{ category.slug }}"
+                                                           class="card-link stretched-link text-decoration-none text-reset link-opacity-50-hover   ">{{ category.name }}</a>
+                                </h5>
+                                <p class="card-text">{{ post.date }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+

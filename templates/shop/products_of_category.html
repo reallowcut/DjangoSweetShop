@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block links %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "shop/css/products-styles.css" %}"/>
+
+{% endblock %}
+{% block content %}
+
+    <div class="conteiner pt-5 text-center">
+        <p>
+        <h2><b>{{ products.category.name }}</b></h2>
+        <div class="card-group ">
+            <div class="row mx-auto">
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+
+        <div class="row row-offcanvas row-offcanvas-right">
+
+            <div class="col-xs-12 col-sm-9">
+
+                <div class="jumbotron text-center">
+                    <h1>{{ category_now.name }}</h1>
+                </div>
+
+                <div class="row mx-auto">
+
+
+                    {% for product in products %}
+
+                        <div class="col-7 col-md-4 gx-3 pt-3">
+                            <div class="card mx-auto text-center">
+
+                                <div class="card-body ">
+                                    <h5 class="card-title "><a href="{{ product.slug }}"
+                                                               class="card-link text-decoration-none text-reset link-opacity-50-hover   ">{{ product.name }}</a>
+                                    </h5>
+
+                                    <div class="product-thumb">
+                                        <a href="#"><img src="{{ product.image.url }}" alt=""></a>
+                                    </div>
+
+                                    <p class="card-text fs-5"><b>{{ product.price }}</b> руб.</p>
+
+
+                                </div>
+                                <div class="card-footer text-center">
+
+
+                                    <a class="btn btn-outline-success" href={% url 'shop:basket_add' product.slug %}>
+                                        Отправить в корзину
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+
+                    <nav class="pt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item {% if not products.has_previous %} disabled {% endif %}">
+                                <a class="page-link"
+                                   href="{% if products.has_previous %} {% url 'shop:paginator' category_now.slug products.previous_page_number %} {% else %} # {% endif %}"
+                                   tabindex="-1" aria-disabled="true">
+                                    «
+                                </a>
+                            </li>
+                            {% for page in products.paginator.page_range %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{% url 'shop:paginator' category_now.slug page %}">
+                                        {{ page }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            <li class="page-item {% if not products.has_next %} disabled {% endif %}">
+                                <a class="page-link"
+                                   href="{% if products.has_next %} {% url 'shop:paginator' category_now.slug products.next_page_number %} {% else %} # {% endif %}">
+                                    »
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div><!--/row-->
+            </div><!--/span-->
+
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas " id="sidebar" role="navigation">
+                <div class="list-group">
+                    <a class="list-group-item active border border-light " style="background-color: #765754;"><b>Категории
+                        товаров</b></a>
+                    {% for category in categories %}
+                        {% if category_now.slug == category.slug %}
+                            <a href="{% url 'shop:products_of_category' category.slug %}"
+                               class="list-group-item active border border-light "
+                               style="background-color: #f7e9e1; color: black">{{ category.name }}</a>
+                        {% else %}
+                            <a href="{% url 'shop:products_of_category' category.slug %}"
+                               class="list-group-item ">{{ category.name }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block links %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "shop/css/basket-products-styles.css" %}"/>
+{% endblock %}
+{% block content %}
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="/img/logo/closed-section.png" alt="" width="72" height=auto>
+        <h1 class="display-5 fw-bold">Стоять, ковбой!</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Приносим свои извинения. В промежутке с 22:00 до 08:00 возможность оформления заказа
+                отсутствует.
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="display-5 fw-bold">Центрированный герой</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Быстро создавайте и настраивайте адаптивные сайты, ориентированные на мобильные устройства,
+            с помощью Bootstrap, самого популярного в мире инструментария с открытым исходным кодом для интерфейса
+            пользователя, включающего переменные и миксины Sass, адаптивную сеточную систему, обширные готовые
+            компоненты и мощные плагины JavaScript.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Основная кнопка</button>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Вторичная</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+
+
+.product-thumb a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 150px;
+	padding: 10px;
+}
+
+.product-thumb img {
+	max-width: 100%;
+	max-height: 100%;
+}

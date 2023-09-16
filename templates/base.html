@@ -1,0 +1,212 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+
+        footer {
+            background-color: #765754;
+            color: #e9d9d8; /* Цвет текста и ссылок */
+
+        }
+
+        .footer-container {
+            padding: 20px 0;
+        }
+
+        .footer-divider {
+            border-top: 1px solid white;
+            margin: 20px 0;
+        }
+
+
+        .footer-container ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footer-container ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-container a {
+            color: #e9d9d8;
+            text-decoration: none;
+        }
+
+    </style>
+    {% block links %}
+    {% endblock %}
+
+    <script src="{% static 'vendor/fontawesome/fontawesome-icons.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class='p-2' style="background-color: #f7e9e1;">
+    <div class="container-lg">
+        <div class="w-100 d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'shop:categories' %}" class="nav-link px-2 text-black">Главная</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'shop:basket_page' %}" class="nav-link px-2 text-black">Корзина</a></li>
+                {% endif %}
+                <li><a href="#" class="nav-link px-2 text-black">Ценообразование</a></li>
+                <li><a href="#" class="nav-link px-2 text-black">FAQ</a></li>
+                <li><a href="#" class="nav-link px-2 text-black">О нас</a></li>
+            </ul>
+
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <div class="text-end">
+                        <a class="btn btn-outline-warning" href="/admin/" role="button">
+                            <i class="fa fa-cog fa-spin  fa-fw"></i>
+                            <span class="sr-only">Загрузка...</span>
+                            Admin
+                        </a>
+
+                        <a class="btn btn-outline-danger" href="{% url 'logout' %}" role="button">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> Выход
+                        </a>
+
+                    </div>
+                {% else %}
+                    <a class="btn btn-outline-danger" href="{% url 'logout' %}" role="button">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Выход
+                    </a>
+
+                {% endif %}
+
+            {% else %}
+                <a class="btn btn-outline-dark me-2" href="{% url 'register' %}" role="button">Регистрация</a>
+
+                <a class="btn btn-success " href="{% url 'login' %}" role="button">Вход</a>
+
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class='p-2' style="background-color: #ffffff;">
+    <div class="container">
+        <div class="col-12 d-flex justify-content-between align-items-center justify-content-center">
+
+            <a class="navbar-brand" href="{% url 'shop:categories' %}">
+                <img src="/img/logo/sweet-shop-logo.jpg" width="200" height=auto class="d-inline-block align-top"
+                     alt="">
+            </a>
+
+            <div class="fs-4  text-center text-wrap" style="width: 30rem;">
+                <a style="color:#674844" href="{% url 'shop:categories' %}"
+                   class="lh-sm text-center nav-link active px-2">Интернет-магазин
+                    кондитерских изделий <b>премиум класса из Европы</b></a>
+            </div>
+
+            <span class="fs-5 col-md-end me-1 " style="color:#674844">
+                    <a class="text-start nav-link active px-2 ">
+                        <i class="fa fa-phone-square" aria-hidden="true"></i>
+                        +375 44 <b>553 68 37</b>  </a>
+
+                    <a class="text-start nav-link active px-2 ">
+                        <i class="fa fa-at" aria-hidden="true"></i>
+                        info@sweetmarket.by
+                    </a>
+                <a class="text-start nav-link active px-2 ">
+                    <i class="fa fa-1 fa-truck" aria-hidden="true"></i> <b>8</b>:00 - <b>22</b>:00 </a>
+                </span>
+        </div>
+    </div>
+</div>
+<main class="container col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% block content %}
+    {% endblock %}
+</main>
+<p class="p-4"></p>
+</body>
+
+
+{#<------footer------>#}
+
+<footer>
+    <div class="footer-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">Бренды</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Каталог товаров</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <ul>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 pt-5">
+                    <div>Режим работы: 8:00 - 22:00</div>
+                </div>
+
+                <div class="col-md-3 text-end pt-5">
+                    <div style=" display: inline-block; padding-right: 10px;">
+                        <i class="fa-brands fa-vk fa-2xl"></i>
+                    </div>
+
+                    <div style="display: inline-block; padding-right: 10px;">
+                        <i class="fa-brands fa-instagram fa-2xl"></i>
+                    </div>
+
+                    <div style="display: inline-block; padding-right: 10px;">
+                        <i class="fa-brands fa-viber fa-2xl"></i>
+                    </div>
+                    <div style="display: inline-block">
+                        <i class="fa-brands fa-whatsapp fa-2xl"></i>
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Свидетельство о государственной регистрации от 20 августа 2023 г.</p>
+                    <p>Выдано Минским горисполкомом</p>
+                </div>
+                <div class="col-md-4">
+                    <p>ИП Дроган Максим Юрьевич</p>
+                    <p>г. Минск ул.Солтыса 48-17</p>
+                    <p>УНП 123456789</p>
+                </div>
+                <div class="col-md-4">
+                    <p>Зарегистрирован в торговом реестре</p>
+                    <p>20 августа 2023 г. | Рег. номер: 123456</p>
+                    <p>УНП 123456789</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

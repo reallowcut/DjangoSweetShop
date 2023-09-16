@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block links %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "shop/css/basket-products-styles.css" %}"/>
+{% endblock %}
+{% block content %}
+
+    {% if baskets %}
+        <h2 class="mt-3 mb-3  justify-content-between text-justify text-center mb-3" style="color: #404040">
+            <b>Корзина</b>
+        </h2>
+        <div class="container"></div>
+        {% for basket in baskets %}
+            <div class="card mb-2 gx-1">
+                <div class="card-body">
+                    <div class="row  align-items-center ">
+
+                        <div class="col col-sm-2 product-thumb rounded float-start">
+                            <a href="#"><img src="{{ basket.product.image.url }}" alt=""></a>
+                        </div>
+
+                        <h4 class=" col col-sm-3 card-title">{{ basket.product.name }}</h4>
+                        <div class=" col-sm-2">
+                            <div class="btn-group btn-group-lg col" role="group">
+                                <a class="btn btn-danger" href={% url 'shop:basket_drop' basket.product.slug %}>
+                                    -
+                                </a>
+                                <a class="btn btn-light-warning ">
+                                    <b>{{ basket.quantity }}</b>
+                                </a>
+                                <a class="btn btn-success" href={% url 'shop:basket_add' basket.product.slug %}>
+                                    +
+                                </a>
+                            </div>
+                        </div>
+                        <div class=" col text-muted">
+                            <h5><i class="fa fa-times" aria-hidden="true"></i></h5>
+                        </div>
+                        <div class=" col ">
+                            <h4><b>{{ basket.product.price }}</b></h4>
+                        </div>
+                        <div class=" col text-muted">
+                            <h3>=</h3>
+                        </div>
+                        <div class=" col">
+                            <h4><b>{{ basket.sum }}</b></h4>
+                        </div>
+
+                        <div class="col">
+                            <a href="{% url 'shop:basket_remove' basket.id %}">
+                                <i class="fas fa-trash fa-lg" style="color: #dc3545;"></i>
+                            </a>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        {% endfor %}
+        <div class="card mb-3">
+            <div class="card-footer">
+                <p class="float-left">Итого</p>
+                <h4 class="float-right">{{ baskets.total_sum }} руб.</h4>
+            </div>
+        </div>
+
+        {#        <---------------------поля для данных--------------------->#}
+
+        <h3 class="pt-5 mt-3 mb-3 justify-content-between align-items-center mb-3">
+            Данные для доставки <span
+                class="badge badge-secondary badge-pill">{{ baskets.total_quantity }}</span>
+        </h3>
+
+        <div class="row align-items-center">
+            <div class="col col-6">
+                <form action={% url 'shop:basket_complete' %}>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="btn btn-success btn-lg float-right" type="submit" value="Оформить заказ">
+
+                </form>
+
+
+            </div>
+        </div>
+    {% else %}
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="/img/logo/basket-is-empty.png" alt="" width="150" height=auto>
+            <h1 class="display-5 fw-bold">Ваша корзина пуста.</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">
+                </p>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
