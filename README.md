@@ -1,8 +1,8 @@
 # SweetShop - Online Candy Store
 
-Welcome to SweetShop, an online candy store built using Django and Bootstrap. SweetShop allows users to register, browse product categories, view individual products, add them to their cart, and place orders.
+Welcome to DjangoSweetShop, an online candy store built using Django and Bootstrap. SweetShop allows users to register, browse product categories, view individual products, add them to their cart, and place orders.
 
-![SweetShop Logo](images/logo.png)
+![SweetShop Logo](C:\Users\dumnx\PycharmProjects\DjangoSweetShop\static\img\logo\sweet-shop-logo.jpg)
 
 ## Table of Contents
 - [About The Project](#about-the-project)
@@ -78,15 +78,15 @@ SweetShop provides a user-friendly interface for the following actions:
 - Add products to your cart
 - Place orders
 
-For more information on how to use SweetShop, please refer to the [documentation](https://example.com).
+For more information on how to use DjangoSweetShop, please refer to the [documentation](https://example.com).
 
 ## Roadmap
 
-Here are some planned features and improvements for SweetShop:
+Here are some planned features and improvements for DjangoSweetShop:
 
 - [ ] Implement a user profile page
 - [ ] Add payment processing functionality
-- [ ] Allow users to review and rate products
+- [ ] Allow users to rate products
 - [ ] Implement a search feature
 - [ ] Improve the user interface and design
 
@@ -103,10 +103,6 @@ Contributions to DjangoSweetShop are welcome and appreciated. If you have sugges
 5. Open a pull request
 
 Don't forget to give the project a star if you find it useful!
-
-## License
-
-SweetShop is distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
