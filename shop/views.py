@@ -2,7 +2,6 @@ import datetime
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from shop.forms import OrderForm
@@ -15,7 +14,6 @@ def products_of_category(request, category_slug, page_number=1):
     products = Product.objects.filter(category=category)
     categories = Category.objects.all()
 
-    # products = Product.objects.get(id=1)
     per_page = 6
     paginator = Paginator(products, per_page)
     products_paginator = paginator.page(page_number)
@@ -26,6 +24,12 @@ def products_of_category(request, category_slug, page_number=1):
     return render(request, 'shop/products_of_category.html', context)
 
 
+def product_description(request, category_slug ,product_slug):
+    product = Product.objects.get(slug=product_slug)
+
+    context = {'product': product}
+    return render(request, 'shop/product_description.html', context)
+
 def categories(request):
     categories = Category.objects.all()
     context = {'categories': categories}
@@ -33,7 +37,6 @@ def categories(request):
 
 
 def basket_page(request):
-
     if request.method == 'post':
         return render(request, 'shop/basket_complete.html')
 
@@ -53,7 +56,6 @@ def basket_page(request):
 
 @login_required
 def basket_complete(request):
-
     now = datetime.datetime.now()
     hour_now = now.hour
 
