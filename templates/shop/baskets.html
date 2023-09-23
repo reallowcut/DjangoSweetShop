@@ -16,7 +16,9 @@
                     <div class="row  align-items-center ">
 
                         <div class="col col-sm-2 product-thumb rounded float-start">
+                            {% if basket.product.image %}
                             <a href="#"><img src="{{ basket.product.image.url }}" alt=""></a>
+                            {% endif %}
                         </div>
 
                         <h4 class=" col col-sm-3 card-title">{{ basket.product.name }}</h4>
