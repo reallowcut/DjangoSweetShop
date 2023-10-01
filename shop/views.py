@@ -1,9 +1,7 @@
 import datetime
-
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-
 from shop.forms import OrderForm
 from shop.models import *
 from django.core.paginator import Paginator
@@ -24,11 +22,12 @@ def products_of_category(request, category_slug, page_number=1):
     return render(request, 'shop/products_of_category.html', context)
 
 
-def product_description(request, category_slug ,product_slug):
+def product_description(request, category_slug, product_slug):
     product = Product.objects.get(slug=product_slug)
 
     context = {'product': product}
     return render(request, 'shop/product_description.html', context)
+
 
 def categories(request):
     categories = Category.objects.all()
@@ -91,7 +90,7 @@ def basket_drop(request, product_slug):
         Basket.objects.create(user=request.user, product=product, quantity=1)
     else:
         basket = baskets.first()
-        if basket.quantity == 0:
+        if basket.quantity == 1:
             return HttpResponseRedirect(request.META['HTTP_REFERER'])
         basket.quantity = basket.quantity - 1
         basket.save()

@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-5">
-    <div class="row">
+    <div class="row text-break">
         <div class="col-md-6 ">
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="mx-auto ml-auto d-block" style="max-width: 100%; height: auto;">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="mx-auto ml-auto d-block"
+                 style="max-width: 100%; height: auto;">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 ">
             <h2 style="margin-top: 10px;">{{ product.name }}</h2>
-            <p class="text-muted">Цена: ${{ product.price }}</p>
-            <p>{{ product.description }}</p>
+            <p class="text-muted">Цена: {{ product.price }} руб.</p>
+            <div class="">
+                <p>{{ product.description }}</p>
+            </div>
             <a class="btn btn-outline-success" href={% url 'shop:basket_add' product.slug %}>
-                Отправить в корзину
+            Отправить в корзину
             </a>
         </div>
     </div>
