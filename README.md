@@ -40,8 +40,8 @@ To get started with SweetShop locally, follow these simple steps:
 Make sure you have the following prerequisites installed:
 
 - Python
-- Django
 - Pip
+- Git
 
 ### Installation
 

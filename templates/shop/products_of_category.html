@@ -33,11 +33,11 @@
 
                                 <div class="card-body ">
                                     <h5 class="card-title "><a href={% url 'shop:product_description' category_now.slug product.slug %}
-                                                               class="card-link text-decoration-none text-reset link-opacity-50-hover   ">{{ product.name }}</a>
+                                                               class="card-link text-decoration-none text-reset link-opacity-50-hover">{{ product.name }}</a>
                                     </h5>
 
                                     <div class="product-thumb">
-                                        <a href="{{ product.slug }}"><img src="{{ product.image.url }}" alt=""></a>
+                                        <a href={% url 'shop:product_description' category_now.slug product.slug %}><img src="{{ product.image.url }}" alt=""></a>
                                     </div>
 
                                     <p class="card-text fs-5"><b>{{ product.price }}</b> руб.</p>
