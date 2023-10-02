@@ -17,7 +17,7 @@
 
                         <div class="col col-sm-2 product-thumb rounded float-start">
                             {% if basket.product.image %}
-                            <a href="#"><img src="{{ basket.product.image.url }}" alt=""></a>
+                            <a href={% url 'shop:product_description' basket.product.category.slug basket.product.slug %}><img src="{{ basket.product.image.url }}" alt=""></a>
                             {% endif %}
                         </div>
 
