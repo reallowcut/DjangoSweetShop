@@ -1,5 +1,5 @@
 venv
 .idea
-/static/img/category_img/
-/static/img/product_img/
+/src/static/img/category_img/
+/src/static/img/product_img/
 

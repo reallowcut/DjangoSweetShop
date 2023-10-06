@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django_sweetshop
+    volumes:
+      - ./src:/src
+    ports:
+      - 8000:8000
+    env_file:
+#      - db_keys.txt
+      - db_keys.txt
+    depends_on:
+      - db
+    command: bash -c "python manage.py runserver 0.0.0.0:8000"
+#    command: bash -c "gunicorn -w 9 src.wsgi:application -b 0.0.0.0:8000"
+
+
+
+  db:
+    image: postgres
+    container_name: postgres_sweetshop
+    env_file:
+      - db_keys.txt
+    volumes:
+      - ./backups:/backups
+    ports:
+      - "5432:5432"

@@ -18,7 +18,7 @@ Welcome to DjangoSweetShop, an online candy store built using Django and Bootstr
 
 ## About The Project
 
-![img.png](static/img/logo/site.png)
+![img.png](src/static/img/logo/site.png)
 
 SweetShop is your one-stop destination for all things sweet and delicious. Whether you're craving chocolates, gummy bears, or licorice, SweetShop has it all. Register today and start filling your cart with your favorite candies.
 
